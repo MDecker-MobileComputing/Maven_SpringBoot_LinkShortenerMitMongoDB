@@ -19,6 +19,6 @@ services:
       - 8081:8081
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: s3cr3t
+      ME_CONFIG_MONGODB_ADMINPASSWORD: g3h3im
       ME_CONFIG_MONGODB_URL: mongodb://root:g3h3im@mongo:27017/
       ME_CONFIG_BASICAUTH: false
