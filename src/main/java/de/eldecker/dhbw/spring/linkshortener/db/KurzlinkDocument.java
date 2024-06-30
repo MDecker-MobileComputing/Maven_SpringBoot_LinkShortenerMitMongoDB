@@ -2,6 +2,9 @@ package de.eldecker.dhbw.spring.linkshortener.db;
 
 import static java.time.LocalDateTime.now;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -16,7 +19,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * Klasse für Kurzlink-Objekte, die in der MongoDB gespeichert werden. 
  */
 @Document( collection = "kurzlinks" )
-public class Kurzlink {
+public class KurzlinkDocument {
 
     /** Primärschlüssel in MongoDB. */
     @Id
@@ -40,19 +43,30 @@ public class Kurzlink {
 
     
     /** Default-Konstruktor. */
-    public Kurzlink() {}
+    public KurzlinkDocument() {}
 
 
     /**
-      * Konstruktor, um neuen Shortlink anzulegen.
-      */
-    public Kurzlink( String kuerzel, URL url ) {
+     * Konstruktor, um neuen Shortlink anzulegen.
+     */
+    public KurzlinkDocument( String kuerzel, URL url ) {
 
         this.kuerzel = kuerzel;
         this.url     = url;
 
         this.zeitpunkt = now();
         this.zaehler   = 0;
+    }
+    
+    /**
+     * Convenience-Methode, um Kürzel mit URL als String zu erzeugen.  
+     */
+    public KurzlinkDocument( String kuerzel, String url ) 
+           throws URISyntaxException, MalformedURLException {
+        
+        this( kuerzel, 
+              new URI( url ).toURL() 
+            );
     }
 
     public ObjectId getId() {
@@ -129,7 +143,7 @@ public class Kurzlink {
     /**
      * Vergleicht ein Objekt mit {@code obj}.
      * 
-     * @return {@code true} gdw. wenn {@code obj} auch eine {@link Kurzlink}-Objekt
+     * @return {@code true} gdw. wenn {@code obj} auch eine {@link KurzlinkDocument}-Objekt
      *         ist und alle Attribute bis auf die ID denselben Wert haben.  
      */
     @Override
@@ -138,7 +152,7 @@ public class Kurzlink {
         if ( obj == null ) { return false; }
         if ( obj == this ) { return true;  }
         
-        if ( obj instanceof Kurzlink anderes ) {
+        if ( obj instanceof KurzlinkDocument anderes ) {
             
             return Objects.equals( kuerzel  , anderes.kuerzel   ) &&
                    Objects.equals( url      , anderes.url       ) &&
