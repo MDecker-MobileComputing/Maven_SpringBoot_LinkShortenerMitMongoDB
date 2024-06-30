@@ -39,9 +39,12 @@ public class DemoDatenImporter implements ApplicationRunner {
             
             LOG.info( "DB enthält keine Kurzlinks, lade jetzt Demo-Daten ..." );
             
-            KurzlinkDocument kurzlink1 = new KurzlinkDocument( "initializr", "https://start.spring.io/" );                                     
+            KurzlinkDocument kurzlink1 = new KurzlinkDocument( "initializr", "https://start.spring.io/" );                                    
             _kurzlinkRepo.save( kurzlink1 );
-            
+
+            KurzlinkDocument kurzlink2 = new KurzlinkDocument( "heise", "https://www.heise.de/developer/" );                                    
+            _kurzlinkRepo.save( kurzlink2 );
+
             final long anzahlNeu = _kurzlinkRepo.count();
             LOG.info( "Es sind jetzt {} Kurzlinks in der DB gespeichert.", anzahlNeu );             
         }
