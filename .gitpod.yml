@@ -6,10 +6,8 @@ image:
 ports:
   - name: Linkshortener
     port: 8080
-    onOpen: open-browser 
     visibility: public
   - name: Mongo-Express
     port: 8081
-    onOpen: open-browser 
     visibility: public
     
