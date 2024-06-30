@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  * Repo-Interface für Zugriff auf {@link Kurzlink}-Objekte.
  */
-public interface KurzlinkRepo extends MongoRepository<Kurzlink, ObjectId>{
+public interface KurzlinkRepo extends MongoRepository<Kurzlink, ObjectId> {
 
 }
