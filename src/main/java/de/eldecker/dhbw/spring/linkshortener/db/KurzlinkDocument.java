@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 
 /**
- * Klasse für Kurzlink-Objekte, die in der MongoDB gespeichert werden. 
+ * Klasse für Kurzlink-Objekte, die in MongoDB gespeichert werden. 
  */
 @Document( collection = "kurzlinks" )
 public class KurzlinkDocument {
@@ -62,7 +62,7 @@ public class KurzlinkDocument {
      * Convenience-Methode, um Kürzel mit URL als String zu erzeugen.  
      */
     public KurzlinkDocument( String kuerzel, String url ) 
-           throws URISyntaxException, MalformedURLException {
+                    throws URISyntaxException, MalformedURLException {
         
         this( kuerzel, 
               new URI( url ).toURL() 
