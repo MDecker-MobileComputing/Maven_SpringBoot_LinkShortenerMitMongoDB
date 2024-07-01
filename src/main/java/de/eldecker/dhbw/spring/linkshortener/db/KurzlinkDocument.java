@@ -146,7 +146,7 @@ public class KurzlinkDocument {
     @Override
     public String toString() {
 
-        return "Kurzlink \"" + kuerzel + "\" für URL " + url;
+        return "Kurzlink \"" + kuerzel + "\" für die folgende URL: " + url;
     }
 
     

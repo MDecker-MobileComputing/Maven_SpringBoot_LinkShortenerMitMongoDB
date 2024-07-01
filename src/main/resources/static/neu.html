@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Link-Shortener mit MongoDB: Neuen Link anlegen</title>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/linkshortener.css">
+</head>
+<body>
+
+  <h1>Neuen Link anlegen</h1>
+
+  <form action="/app/link/neu" method="post">
+
+    <label for="titel">Titel: </label>
+    <input type="text" id="titel" name="titel" min="1">
+    <br><br>
+
+    <label for="kuerzel">Kürzel: </label>
+    <input type="text" id="kuerzel" name="kuerzel">
+    <br><br>
+
+    <label for="url">URL: </label>
+    <input type="url" id="url" name="url" min="1">
+    <br><br>
+
+    <input type="submit" value="Anlegen"      >
+    <input type="reset"  value="Zurücksetzen">
+
+  </form>
+  <br><br>
+
+  <p class="klein">Alle Felder sind Pflichtfelder</p>
+
+</body>

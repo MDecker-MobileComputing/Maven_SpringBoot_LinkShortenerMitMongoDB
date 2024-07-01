@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Short-Links mit MongoDB: Neuer Link</title>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/linkshortener.css">
+</head>
+<body>
+
+    <h1>Neuer Short-Link angelegt</h1>
+
+    <p>
+        Der Link wurde erfolgreich angelegt:
+        <br><br>
+        <a th:href="'http://localhost:8080/app/link/' + ${kurzlink.getKuerzel()}"
+           th:text="'http://localhost:8080/app/link/' + ${kurzlink.getKuerzel()}"></a>
+    </p>
+
+</body>
