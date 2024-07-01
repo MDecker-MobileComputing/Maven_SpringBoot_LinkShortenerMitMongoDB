@@ -1,5 +1,7 @@
 package de.eldecker.dhbw.spring.linkshortener.db;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+
 import static java.time.LocalDateTime.now;
 
 import java.net.MalformedURLException;
@@ -30,6 +32,7 @@ public class KurzlinkDocument {
     
     /** Kürzel der Kurzl-URL */
     @Field( "url_kuerzel" )
+    @Indexed( unique = true )
     private String kuerzel;
 
     /** Lang-URL */
@@ -128,6 +131,11 @@ public class KurzlinkDocument {
 
         this.zaehler = zaehler;
     }
+    
+    public void inkrementZaehler() {
+        
+        this.zaehler++;
+    }
 
     
     /**
@@ -158,8 +166,9 @@ public class KurzlinkDocument {
     /**
      * Vergleicht ein Objekt mit {@code obj}.
      * 
-     * @return {@code true} gdw. wenn {@code obj} auch eine {@link KurzlinkDocument}-Objekt
-     *         ist und alle Attribute bis auf die ID denselben Wert haben.  
+     * @return {@code true} gdw. wenn {@code obj} auch eine 
+     *         {@link KurzlinkDocument}-Objekt ist und alle  
+     *         Attribute bis auf die ID denselben Wert haben.  
      */
     @Override
     public boolean equals( Object obj ) {

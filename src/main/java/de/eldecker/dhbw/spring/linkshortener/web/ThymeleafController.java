@@ -49,7 +49,8 @@ public class ThymeleafController {
         final Optional<KurzlinkDocument> kurzlinkOptional = _kurzlinkRepo.findByKuerzel( kuerzel );
         if ( kurzlinkOptional.isEmpty() ) {
             
-            final String meldung = format( "Keinen Short-Link mit Kürzel \"%s\" gefunden.", kuerzel );
+            final String meldung = format( 
+                    "Keinen Short-Link mit Kürzel \"%s\" gefunden.", kuerzel );
             
             LOG.warn( meldung );
             
@@ -59,8 +60,14 @@ public class ThymeleafController {
         }
         
         final KurzlinkDocument kurzlink = kurzlinkOptional.get();
-        
+                
         model.addAttribute( "kurzlink", kurzlink );
+        kurzlink.inkrementZaehler();
+        
+        _kurzlinkRepo.save( kurzlink );
+        
+        LOG.info( "Link-Kürzel \"{}\" aufgelöst: {}", 
+                  kurzlink.getKuerzel(), kurzlink.getUrl() );
         
         return "link-aufgeloest";
     }

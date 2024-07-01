@@ -13,12 +13,19 @@
         <span th:text="${kurzlink.getTitel()}"></span>
     </h1>
 
-    <a th:href="${kurzlink.getUrl()}" target="_blank" th:text="${kurzlink.getUrl()}"></a>
+    <a th:href="${kurzlink.getUrl()}"
+       target="_blank"
+       th:text="${kurzlink.getUrl()} +' ↗'">
+    </a>
+
     <br><br>
 
-    <p>
+    <p class="klein">
         <span class="fett">Link angelegt am: </span>
-        <span th:text="${kurzlink.getZeitpunkt()}"></span>
+        <span th:text="${#temporals.format(kurzlink.getZeitpunkt(), 'dd MMM yyyy, HH:mm')} + ' Uhr'"></span>
+        <br><br>
+        <span class="fett">Anzahl der Zugriffe: </span>
+        <span th:text="${kurzlink.getZaehler()}"></span>
     </p>
 
 </body>
