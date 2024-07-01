@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Short-Links mit MongoDB: Aufgelöster Link</title>
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/linkshortener.css">
+</head>
+<body>
+
+    <h1>
+        Short-Link aufgelöst:
+        <span th:text="${kurzlink.getTitel()}"></span>
+    </h1>
+
+    <a th:href="${kurzlink.getUrl()}" target="_blank" th:text="${kurzlink.getUrl()}"></a>
+    <br><br>
+
+    <p>
+        <span class="fett">Link angelegt am: </span>
+        <span th:text="${kurzlink.getZeitpunkt()}"></span>
+    </p>
+
+</body>

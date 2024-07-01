@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import de.eldecker.dhbw.spring.linkshortener.db.KurzlinkDocument;
 import de.eldecker.dhbw.spring.linkshortener.db.KurzlinkRepo;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +28,7 @@ public class DemoDatenImporter implements ApplicationRunner {
     @Autowired
     private KurzlinkRepo _kurzlinkRepo; 
     
+    
     /**
      * Diese Methode wird kurz nach Hochfahren der Anwendung ausgeführt.
      */
@@ -39,15 +43,33 @@ public class DemoDatenImporter implements ApplicationRunner {
             
             LOG.info( "DB enthält keine Kurzlinks, lade jetzt Demo-Daten ..." );
             
-            KurzlinkDocument kurzlink1 = new KurzlinkDocument( "initializr", "https://start.spring.io/" );                                    
-            _kurzlinkRepo.save( kurzlink1 );
+            createKurzlink( "Web-Seite", 
+                            "https://start.spring.io/", 
+                            "initializr" );
+            
+            createKurzlink( "Heise Developer", 
+                            "https://www.heise.de/developer/", 
+                            "heise" );
 
-            KurzlinkDocument kurzlink2 = new KurzlinkDocument( "heise", "https://www.heise.de/developer/" );                                    
-            _kurzlinkRepo.save( kurzlink2 );
-
+            createKurzlink( "Erklärung MongoDB", 
+                            "https://www.ionos.de/digitalguide/websites/web-entwicklung/mongodb-vorstellung-und-vergleich-mit-mysql/", 
+                            "mdb" );
+            
             final long anzahlNeu = _kurzlinkRepo.count();
             LOG.info( "Es sind jetzt {} Kurzlinks in der DB gespeichert.", anzahlNeu );             
         }
+    }
+
+    
+    /**
+     * Hilfsmethode zum Anlegen eines Kurz-Links.
+     */
+    private void createKurzlink( String titel, String url, String kuerzel ) 
+            throws URISyntaxException, MalformedURLException {
+
+        KurzlinkDocument kurzlink = new KurzlinkDocument( kuerzel, url, titel );
+        
+        _kurzlinkRepo.save( kurzlink );
     }
     
 }

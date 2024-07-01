@@ -25,6 +25,9 @@ public class KurzlinkDocument {
     @Id
     private ObjectId id;
 
+    /** Titel des Links, z.B. "Tutorial für MongoDB mit Spring Boot". */
+    private String titel;
+    
     /** Kürzel der Kurzl-URL */
     @Field( "url_kuerzel" )
     private String kuerzel;
@@ -49,23 +52,25 @@ public class KurzlinkDocument {
     /**
      * Konstruktor, um neuen Shortlink anzulegen.
      */
-    public KurzlinkDocument( String kuerzel, URL url ) {
+    public KurzlinkDocument( String kuerzel, URL url, String titel ) {
 
         this.kuerzel = kuerzel;
         this.url     = url;
+        this.titel   = titel;
 
         this.zeitpunkt = now();
         this.zaehler   = 0;
     }
     
     /**
-     * Convenience-Methode, um Kürzel mit URL als String zu erzeugen.  
+     * Convenience-Konstruktor, um Kürzel mit URL als String zu erzeugen.  
      */
-    public KurzlinkDocument( String kuerzel, String url ) 
-                    throws URISyntaxException, MalformedURLException {
+    public KurzlinkDocument( String kuerzel, String url, String titel ) 
+           throws URISyntaxException, MalformedURLException {
         
         this( kuerzel, 
-              new URI( url ).toURL() 
+              new URI( url ).toURL(),
+              titel
             );
     }
 
@@ -73,7 +78,17 @@ public class KurzlinkDocument {
 
         return id;
     }
-
+    
+    public String getTitel() {
+        
+        return titel;
+    }
+    
+    public void setTitel( String titel ) {
+        
+        this.titel = titel;
+    }
+    
     public String getKuerzel() {
 
         return kuerzel;
@@ -136,7 +151,7 @@ public class KurzlinkDocument {
     @Override
     public int hashCode() {
         
-        return Objects.hash( kuerzel, url, zeitpunkt, zaehler );
+        return Objects.hash( titel, kuerzel, url, zeitpunkt, zaehler );
     }
 
 
@@ -154,7 +169,8 @@ public class KurzlinkDocument {
         
         if ( obj instanceof KurzlinkDocument anderes ) {
             
-            return Objects.equals( kuerzel  , anderes.kuerzel   ) &&
+            return Objects.equals( titel    , anderes.titel     ) &&
+                   Objects.equals( kuerzel  , anderes.kuerzel   ) &&
                    Objects.equals( url      , anderes.url       ) &&
                    Objects.equals( zeitpunkt, anderes.zeitpunkt ) &&
                    Objects.equals( zaehler  , anderes.zaehler   );            
