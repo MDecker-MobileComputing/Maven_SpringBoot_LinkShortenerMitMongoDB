@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.eldecker.dhbw.spring.linkshortener.db.KurzlinkDocument;
@@ -25,7 +24,6 @@ import de.eldecker.dhbw.spring.linkshortener.db.KurzlinkRepo;
  * Controller für Thymeleaf-Templates. 
  */
 @Controller
-@RequestMapping( "/app/" )
 public class ThymeleafController {
     
     private final static Logger LOG = LoggerFactory.getLogger( ThymeleafController.class );
@@ -85,7 +83,7 @@ public class ThymeleafController {
      * 
      * @return Name der Template-Datei ohne Datei-Endung {@code .html}
      */
-    @PostMapping( "/link/neu" )
+    @PostMapping( "/app/link/neu" )
     public String linkNeu( Model model,
                            @RequestParam( value = "titel"  , required = true  ) String titel  ,
                            @RequestParam( value = "kuerzel", required = true  ) String kuerzel,
