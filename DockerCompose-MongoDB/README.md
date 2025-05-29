@@ -4,7 +4,8 @@ Dieser Ordner enthält eine Datei `docker-compose.yml`, die zwei Docker-Containe
 
 * Ein Container enthält die NoSQL-Datenbank [MongoDB](https://www.mongodb.com/).
 
-* Der andere Container enthält mit [Mongo Express](https://github.com/mongo-express/mongo-express)
+* Der andere Container enthält mit 
+  [Mongo Express](https://github.com/mongo-express/mongo-express?tab=readme-ov-file#mongo-express)
   ein web-basiertes Admin-UI für diese MongoDB-Instanz.
   Nach erfolgreichem Start der beiden Container sollte dieses Admin-UI lokal unter der URL
   http://localhost:8081/ bereitstehen.
