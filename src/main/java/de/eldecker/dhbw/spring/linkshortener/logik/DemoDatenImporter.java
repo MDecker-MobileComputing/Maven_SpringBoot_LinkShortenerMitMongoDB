@@ -67,7 +67,7 @@ public class DemoDatenImporter implements ApplicationRunner {
     private void createKurzlink( String titel, String url, String kuerzel ) 
             throws URISyntaxException, MalformedURLException {
 
-        KurzlinkDocument kurzlink = new KurzlinkDocument( kuerzel, url, titel );
+        final KurzlinkDocument kurzlink = new KurzlinkDocument( kuerzel, url, titel );
         
         _kurzlinkRepo.save( kurzlink );
     }
