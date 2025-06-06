@@ -43,7 +43,7 @@ public class DemoDatenImporter implements ApplicationRunner {
             
             LOG.info( "DB enthält keine Kurzlinks, lade jetzt Demo-Daten ..." );
             
-            createKurzlink( "Web-Seite", 
+            createKurzlink( "Spring Initializr (Projektvorlagen für Spring Boot erzeugen)", 
                             "https://start.spring.io/", 
                             "initializr" );
             
