@@ -1,9 +1,9 @@
-version: '3.1'
 
 services:
 
+  # https://hub.docker.com/_/mongo/
   mongo:
-    image: mongo
+    image: mongo:7.0.34-jammy
     restart: always
     ports:
       - 27017:27017
@@ -12,8 +12,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: g3h3im
       MONGO_INITDB_DATABASE: linkshortener
 
+  # Web-UI ( https://hub.docker.com/_/mongo-express , https://postimg.cc/94ZcST4w )
   mongo-express:
-    image: mongo-express
+    image: mongo-express:1.0.2-20-alpine3.19
     restart: always
     ports:
       - 8081:8081
